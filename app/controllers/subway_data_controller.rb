@@ -1,5 +1,7 @@
 class SubwayDataController < ApplicationController
 
+  require 'net/http'
+
   def index
     
     orig_data = JSON.parse(Net::HTTP.get_response("developer.mbta.com", "/lib/rthr/orange.json").body)
