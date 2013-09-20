@@ -1,0 +1,11 @@
+<h1>To Oak Grove</h1>
+
+<% @data[:oak_grove].each do |time| %>
+  <%= minutes_seconds(time) %><br/>
+<% end %>
+
+<h1>To Forest Hills</h1>
+
+<% @data[:forest_hills].each do |time| %>
+  <%= minutes_seconds(time)%><br/>
+<% end %>
