@@ -6,9 +6,26 @@ class SubwayDataController < ApplicationController
     
     orig_data = JSON.parse(Net::HTTP.get_response("developer.mbta.com", "/lib/rthr/orange.json").body)
 
+
+    @bus = Net::HTTP.get_response("webservices.nextbus.com", "/service/publicXMLFeed?command=predictions&a=mbta&r=59&s=8203").body
+
+    directions = Nokogiri::XML(@bus).xpath('//body/predictions/direction')
+
+    if directions.size == 0 
+      @bus = ["No information"]
+    else
+      @bus = []
+      directions.each do |dir|
+        @bus << dir
+      end
+    end
+
+    #http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=mbta&r=59&s=8203
+
+
     result = {}
 
-    result[:oak_grove] = to_station(to_destination(orig_data.dup, "Oak Grove"), "Wellington")
+    result[:oak_grove] = to_station(to_destination(orig_data.dup, "Oak Grove"), "Downtown Crossing")
     result[:forest_hills] = to_station(to_destination(orig_data.dup, "Forest Hills"), "Wellington")
 
 
