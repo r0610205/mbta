@@ -1,11 +1,14 @@
-<h1>To Oak Grove</h1>
+<div class="hero-unit" style="padding: 5px;">
+<h3>To Oak Grove</h3>
 
 <% @data[:oak_grove].each do |time| %>
   <%= minutes_seconds(time) %><br/>
 <% end %>
 
-<h1>To Forest Hills</h1>
+<h3>To Forest Hills</h3>
 
 <% @data[:forest_hills].each do |time| %>
   <%= minutes_seconds(time)%><br/>
 <% end %>
+
+</div>
